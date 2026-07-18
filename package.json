@@ -33,6 +33,14 @@
   ],
   "author": "aj khullar <arjunkhullar2006@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajr-khll/ghostty-config-cli.git"
+  },
+  "homepage": "https://github.com/ajr-khll/ghostty-config-cli#readme",
+  "bugs": {
+    "url": "https://github.com/ajr-khll/ghostty-config-cli/issues"
+  },
   "engineStrict": false,
   "os": [
     "darwin",
