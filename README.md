@@ -1,3 +1,9 @@
+## Install
+
+```sh
+npm install -g ghostty-config-cli
+```
+
 # ghostty-config-cli
 
 **A fullscreen terminal UI for editing  [Ghostty](https://ghostty.org) config  + live preview**
@@ -15,12 +21,6 @@
 `theme` · `font-family` · `font-size` · `background` · `foreground` · `background-opacity` · `cursor-style` · `cursor-style-blink`
 
 Every other key in your config is left untouched.
-
-## Install
-
-```sh
-npm install -g ghostty-config-cli
-```
 
 Requires Node.js ≥ 18. Ghostty is recommended (for theme/font enumeration) but not required.
 
