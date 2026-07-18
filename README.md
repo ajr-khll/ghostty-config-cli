@@ -1,16 +1,7 @@
 # ghostty-config-cli
 
-**A fullscreen terminal UI for editing your [Ghostty](https://ghostty.org) config — with a live preview of how your changes will actually look.** Cross-platform (macOS + Linux).
-
-> created by **aj khullar**
-
+**A fullscreen terminal UI for editing  [Ghostty](https://ghostty.org) config  + live preview**
 ---
-
-## Why
-
-Editing a terminal config by hand means alt-tabbing between docs, guessing at theme and font names, and reloading to see if a color looks right. `ghostty-config-cli` turns that into a fast, visual loop: navigate your settings, watch a mock terminal update live as you edit, and save safely — without ever clobbering the parts of your config the tool doesn't manage.
-
-## Features
 
 - **Fullscreen, paned TUI** — sidebar navigation, a focused detail editor, and a live preview, rendered in the alternate screen buffer (your scrollback is restored on exit).
 - **Live preview** — a mock terminal window that updates as you type: real theme colors (resolved straight from Ghostty's theme files), the 16-color ANSI palette, and a cursor that reflects your `cursor-style` and blink settings.
