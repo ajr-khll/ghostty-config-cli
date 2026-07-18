@@ -144,15 +144,15 @@ export default function PreviewPane({
           <Text backgroundColor={bg}>{" ".repeat(Math.max(0, w - 17))}</Text>
         </Text>
       </Box>
-      <Box marginTop={1}>
-        <Text dimColor>font </Text>
-        <Text wrap="truncate">{fontFamily}</Text>
-        <Text dimColor> · {fontSize}pt · </Text>
-        {values.background || values.foreground ? (
-          <Text dimColor>explicit colors</Text>
-        ) : (
-          <Text dimColor>{theme ? "theme colors" : "default colors"}</Text>
-        )}
+      <Box marginTop={1} width={w}>
+        <Text wrap="truncate">
+          <Text dimColor>font </Text>
+          {fontFamily}
+          <Text dimColor>
+            {" · "}
+            {fontSize}pt · {values.background || values.foreground ? "explicit colors" : theme ? "theme colors" : "default colors"}
+          </Text>
+        </Text>
       </Box>
     </Box>
   );

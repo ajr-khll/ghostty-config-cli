@@ -5,6 +5,7 @@ import type { ConfigStore } from "../state/configStore.js";
 import type { ThemeColors } from "../state/themeColors.js";
 import FieldEditor from "./FieldEditor.js";
 import PreviewPane from "./PreviewPane.js";
+import ThemeBrowser from "./ThemeBrowser.js";
 
 export default function DetailPane({
   field,
@@ -32,8 +33,10 @@ export default function DetailPane({
   const key = field.key as ManagedKey;
   const dirty = store.isDirty(key);
   const original = store.original[key];
-  // The theme/font browser needs the vertical space while open; the preview
-  // updates the moment a selection is committed, so hide it during browsing.
+  // Theme editing opens a dedicated browser with its own live preview.
+  const themeBrowsing = active && field.key === "theme";
+  // The font browser needs the vertical space while open; the preview updates
+  // the moment a selection is committed, so hide it during that browsing.
   const showPreview = previewEnabled && !(active && field.kind === "text");
 
   return (
@@ -49,33 +52,50 @@ export default function DetailPane({
         <Text dimColor>{field.help}</Text>
       </Box>
 
-      <FieldEditor
-        field={field}
-        value={store.get(key)}
-        active={active}
-        selected
-        dirty={dirty}
-        onChange={onChange}
-        onExit={onExit}
-        options={options}
-      />
+      {themeBrowsing ? (
+        <ThemeBrowser
+          options={options ?? []}
+          currentValue={store.get(key)}
+          baseValues={store.values}
+          previewWidth={Math.max(26, previewWidth - 32)}
+          showPreview={previewEnabled}
+          onCommit={(name) => {
+            onChange(name);
+            onExit();
+          }}
+          onCancel={onExit}
+        />
+      ) : (
+        <>
+          <FieldEditor
+            field={field}
+            value={store.get(key)}
+            active={active}
+            selected
+            dirty={dirty}
+            onChange={onChange}
+            onExit={onExit}
+            options={options}
+          />
 
-      {warning && (
-        <Box marginTop={1}>
-          <Text color="yellow">⚠ {warning}</Text>
-        </Box>
+          {warning && (
+            <Box marginTop={1}>
+              <Text color="yellow">⚠ {warning}</Text>
+            </Box>
+          )}
+
+          {dirty && (
+            <Box marginTop={1}>
+              <Text dimColor>on disk: </Text>
+              <Text dimColor>{original === undefined || original === "" ? "(unset)" : original}</Text>
+            </Box>
+          )}
+
+          <Box flexGrow={1} />
+
+          {showPreview && <PreviewPane values={store.values} theme={themeColors} width={previewWidth} />}
+        </>
       )}
-
-      {dirty && (
-        <Box marginTop={1}>
-          <Text dimColor>on disk: </Text>
-          <Text dimColor>{original === undefined || original === "" ? "(unset)" : original}</Text>
-        </Box>
-      )}
-
-      <Box flexGrow={1} />
-
-      {showPreview && <PreviewPane values={store.values} theme={themeColors} width={previewWidth} />}
     </Box>
   );
 }
