@@ -7,6 +7,9 @@ npm install -g ghostty-config-cli
 # ghostty-config-cli
 
 **A fullscreen terminal UI for editing  [Ghostty](https://ghostty.org) config  + live preview**
+
+![demo](https://raw.githubusercontent.com/ajr-khll/ghostty-config-cli/main/demo.gif)
+
 ---
 
 - **Fullscreen, paned TUI** — sidebar navigation, a focused detail editor, and a live preview, rendered in the alternate screen buffer (your scrollback is restored on exit).
